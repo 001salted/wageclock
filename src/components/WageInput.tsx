@@ -24,7 +24,7 @@ const InputWrapper = styled.div`
 `;
 
 const Label = styled.span`
-  font-family: 'Pretendard';
+  font-family: 'DungGeunMo';
   font-size: 32px;
   color: #245028;
   white-space: nowrap;
@@ -36,7 +36,7 @@ const Input = styled.input`
   text-align: right;
   font-family: 'Pretendard';
   font-size: 32px;
-  color: #245028;
+  color: #000;
   background-color: transparent;
   height: 90px;
 
