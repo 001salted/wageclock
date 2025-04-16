@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const DaySelector = () => {
+const PaydaySelector = () => {
   const [day, setDay] = useState<number | ''>('');
 
   return (
@@ -29,7 +29,7 @@ const DaySelector = () => {
   )
 }
 
-export default DaySelector;
+export default PaydaySelector;
 
 const Container = styled.div`
   display: flex;
