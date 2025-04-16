@@ -1,7 +1,7 @@
 🔀 What does this PR do? & Why are we doing this?
 <!-- 무슨 작업했는지 요약 -->
 
-[ ] icons 페이지에 크기 조절 size 추가 등
+-[ ] icons 페이지에 크기 조절 size 추가 등
 
 ---
 

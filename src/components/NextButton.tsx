@@ -21,6 +21,7 @@ const NextButton = ({ onClick, label = 'NEXT' }: NextButtonProps) => {
 export default NextButton;
 
 const Wrapper = styled.div`
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
