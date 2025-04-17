@@ -7,7 +7,7 @@ interface EarningsCardProps {
   itemName: string;
 }
 
-const EarningsCard = ({ wonAmount, 
+const EarningsCardToday = ({ wonAmount, 
                         itemAmount, 
                         itemName }: EarningsCardProps) => {
   const [showItem, setShowItem] = useState(false);
@@ -19,7 +19,8 @@ const EarningsCard = ({ wonAmount,
         <TextBox>
           <Top>오늘 출근해서 현재까지</Top>
           <Bottom>
-            <Amount>{showItem ? `${itemAmount} ${itemName}` : `${wonAmount} 원`}</Amount>
+            <Amount>{showItem ? `${itemAmount}` : `${wonAmount}`}</Amount>
+            <AmountUnit>{showItem ? `${itemName}` : `원`}</AmountUnit>
             <AmountText> 벌었습니다!</AmountText>
           </Bottom>
         </TextBox>
@@ -29,7 +30,7 @@ const EarningsCard = ({ wonAmount,
   );
 };
 
-export default EarningsCard;
+export default EarningsCardToday;
 
 const Card = styled.div`
   display: flex;
@@ -75,13 +76,21 @@ const Top = styled.div`
 
 const Bottom = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
 `;
 
 const Amount = styled.div`
   color: white;
   font-family: 'Press Start 2P', DungGeunMo;
-  padding-right: 30px;
+  padding-right: 20px;
+  position: relative;
+  top: 9px;
+`;
+
+const AmountUnit = styled.div`
+  color: white;
+  font-family: 'DungGeunMo';
+  margin-right: 20px;
 `;
 
 const AmountText = styled.div`
