@@ -1,8 +1,10 @@
-import { useState } from "react";
-import WageTypeToggle from "../components/WageTypeToggle";
-import WageInput from "../components/WageInput";
-import NextButton from "../components/NextButton";
 import { useNavigate } from "react-router-dom";
+import InputPageLayout from "../components/InputPageLayout";
+import WageInput from "../components/WageInput";
+import WageTypeToggle from "../components/WageTypeToggle";
+import { useState } from "react";
+
+
 
 function Step1InputPage() {
   const [wageType, setWageType] = useState<'hourly' | 'monthly'>('monthly');
@@ -10,19 +12,28 @@ function Step1InputPage() {
 
   return (
     <main>
-      <h1>시작하기</h1>
-      
-      <h2>급여 기준을 선택해주세요.</h2>
-      <WageTypeToggle 
-        value={wageType === 'hourly' ? '시급' : '월급'}
-        onChange={(val) => {
-          const type = val === '시급' ? 'hourly' : 'monthly';
-          setWageType(type);
-        }} 
+      <InputPageLayout 
+        step={1}
+        sections={[
+          {
+            title: "급여 기준을 선택해주세요.",
+            content: (
+              <WageTypeToggle
+                value={wageType === 'hourly' ? '시급' : '월급'}
+                onChange={(val) => {
+                  const type = val === '시급' ? 'hourly' : 'monthly';
+                  setWageType(type);
+                }}
+              />
+            )
+          },
+          {
+            title: "급여를 입력해주세요.",
+            content: <WageInput wageType={wageType} />
+          }
+        ]}
+        onNext={() => navigate("/step2")}
       />
-      <h2>급여를 입력해주세요.</h2>
-      <WageInput wageType={wageType} />
-      <NextButton label="NEXT" onClick={() => navigate("/step2")} />
     </main>
 
   )

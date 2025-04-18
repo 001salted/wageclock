@@ -56,6 +56,6 @@ const IconButton = styled.button`
 
 const Label = styled.span`
   font-family: 'DungGeunMo';
-  font-size: 20px;
+  font-size: 32px;
   color: #1F4223;
 `

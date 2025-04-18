@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Pretendard Variable', sans-serif;
-    background-color: #F1F5EC;
+    margin: 0;
   }
 
 `
