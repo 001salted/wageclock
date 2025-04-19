@@ -36,7 +36,7 @@ const Container = styled.div`
   height: 78px;
   background-color: #B0F25B;
   border-radius: 10px;
-  min-width: 600px;
+  min-width: 800px;
 `
 
 const Logo = styled.h1`
