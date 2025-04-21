@@ -18,7 +18,7 @@ export default function InputPageLayout({
   step,
   sections,
   onNext,
-  nextLabel = "Next"
+  nextLabel = "Next",
 }: InputPageLayoutProps) {
   return (
     <Wrapper>
@@ -31,11 +31,10 @@ export default function InputPageLayout({
         </SectionWrapper>
       ))}
       <BottomRightWrapper>
-        <NextButton label={nextLabel} onClick={onNext} /> 
+        <NextButton label={nextLabel} onClick={onNext} />
       </BottomRightWrapper>
-
     </Wrapper>
-  )
+  );
 }
 
 const Wrapper = styled.main`
@@ -43,16 +42,17 @@ const Wrapper = styled.main`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #F1F6EC;
+  background-color: #f1f6ec;
   min-height: 100vh;
   min-width: 900px;
   padding: 0;
+  gap: 40px;
 `;
 
 const Heading = styled.h1`
   font-family: DungGeunMo;
   font-size: 32px;
-  color: #062D0A;
+  color: #062d0a;
   align-self: flex-start;
   padding-bottom: 10px;
   margin-left: 40px;
@@ -71,7 +71,8 @@ const SectionWrapper = styled.div`
 const SubTitle = styled.h2`
   font-family: DungGeunMo;
   font-weight: 400;
-  color: #062D0A;
+  color: #062d0a;
+  padding-bottom: 30px;
 `;
 
 const BottomRightWrapper = styled.div`
