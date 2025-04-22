@@ -6,6 +6,7 @@ import Step2InputPage from './pages/Step2InputPage';
 import Step3InputPage from './pages/Step3InputPage';
 import GaugePage from './pages/GaugePage';
 import LoadingPage from './pages/LoadingPage';
+import UserTypeSelectPage from "./pages/UserTypeSelectPage";
 
 function App() {
  return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/gauge" element={<GaugePage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/load" element={<LoadingPage />} />
+        <Route path="/user" element={<UserTypeSelectPage />} />
       </Routes>
     </>
   )

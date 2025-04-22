@@ -1,25 +1,24 @@
 import styled from "styled-components";
-import WageTypeToggle from "./WageTypeToggle";
+import GaugeViewToggle from "./GaugeViewToggle";
 import { useNavigate } from "react-router-dom";
 
 interface HeaderProps {
-  wageType: 'hourly' | 'monthly';
-  onChange: (val: 'hourly' | 'monthly') => void;
+  viewType: 'daily' | 'monthly';
+  onChange: (val: 'daily' | 'monthly') => void;
 }
 
-const Header = ({ wageType, onChange }: HeaderProps) => {
+const Header = ({ viewType, onChange }: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
     <Container>
       <Logo onClick={() => navigate("/")}>wageclock</Logo>
-      <WageTypeToggle
-        value={wageType === 'hourly' ? '일급' : '월급'}
-        onChange={(val) => onChange(val === '일급' ? 'hourly' : 'monthly')}
-        options={['일급', '월급']}
-        variant="compact"
+      <GaugeViewToggle 
+        value={viewType === 'daily' ? '일급' : '월급'}
+        onChange={(val) => onChange(val === '일급' ? 'daily' : 'monthly')}
       />
     </Container>
+    
   )
 }
 
