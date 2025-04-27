@@ -1,8 +1,21 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWage } from "../contexts/WageContext";
-import { calculateEarningsSoFar } from "../utils/calculateEarningsSoFar";
-import { calculatePerMinuteWage } from "../utils/calculatePerMinuteWage";
+import {
+  calculateWorkProgressThisMonth,
+  calculateWorkProgressToday,
+} from "../utils/progressUtils";
+import {
+  calculatePassedWorkMinutesThisMonth,
+  calculatePassedWorkMinutesToday,
+  calculateTotalWorkMinutesPerMonth,
+  calculateWorkMinutesPerDay,
+} from "../utils/timeUtils";
+import {
+  calculateMonthlyEarnings,
+  calculatePerMinuteWage,
+  calculateTodayEarnings,
+} from "../utils/wageUtils";
 
 function LoadingPage() {
   const { wageData } = useWage();
@@ -12,17 +25,64 @@ function LoadingPage() {
     const timer = setTimeout(() => {
       // 1초 로딩 연출
 
-      const perMinuteWage = calculatePerMinuteWage(wageData).perMinuteWage;
+      const { wageType, wageAmount, startTime, endTime, selectedDays } =
+        wageData;
 
-      const result = {
-        perMinuteWage: perMinuteWage,
-        earningsSoFar: calculateEarningsSoFar(
-          wageData.startTime,
-          perMinuteWage
-        ),
-      };
+      // 1. 시간 관련 계산
+      const totalWorkMinutesPerDay = calculateWorkMinutesPerDay(
+        startTime,
+        endTime
+      );
+      const passedMinutesToday = calculatePassedWorkMinutesToday(
+        startTime,
+        endTime
+      );
+      const totalWorkMinutesPerMonth = calculateTotalWorkMinutesPerMonth(
+        startTime,
+        endTime,
+        selectedDays
+      );
+      const passedMinutesThisMonth = calculatePassedWorkMinutesThisMonth(
+        startTime,
+        endTime,
+        selectedDays
+      );
+
+      // 2. 급여 관련 계산
+      const perMinuteWage = calculatePerMinuteWage(
+        wageType,
+        wageAmount as number,
+        totalWorkMinutesPerMonth
+      );
+      const todayEarnings = calculateTodayEarnings(
+        passedMinutesToday,
+        perMinuteWage
+      );
+      const monthlyEarnings = calculateMonthlyEarnings(
+        passedMinutesThisMonth,
+        perMinuteWage
+      );
+
+      // 3. 퍼센트 관련 계산
+      const todayProgress = calculateWorkProgressToday(
+        passedMinutesToday,
+        totalWorkMinutesPerDay
+      );
+      const monthlyProgress = calculateWorkProgressThisMonth(
+        passedMinutesThisMonth,
+        totalWorkMinutesPerMonth
+      );
+
       // 결과 페이지로 이동하면서 계산 결과 전달
-      navigate("/gauge", { state: result });
+      navigate("/gauge", {
+        state: {
+          todayProgress,
+          todayEarnings,
+          monthlyProgress,
+          monthlyEarnings,
+          perMinuteWage,
+        },
+      });
     }, 1000);
 
     return () => clearTimeout(timer);

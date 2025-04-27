@@ -6,14 +6,20 @@ import GaugeComponent from "../components/GaugeComponent";
 import Header from "../components/Header";
 import WonSigns from "../components/WonSigns";
 
-interface GaugeState {
+interface GaugePageState {
+  todayProgress: number;
+  todayEarnings: number;
+  monthlyProgress: number;
+  monthlyEarnings: number;
   perMinuteWage: number;
-  earningsSoFar: number;
 }
 
 function GaugePage() {
   const { state } = useLocation();
-  const { earningsSoFar } = state as GaugeState;
+
+  const { todayProgress, todayEarnings, monthlyProgress, monthlyEarnings } =
+    state as GaugePageState;
+
   const [viewType, setViewType] = useState<"daily" | "monthly">("daily");
 
   return (
@@ -22,9 +28,9 @@ function GaugePage() {
 
       {viewType === "daily" && (
         <>
-          <GaugeComponent state={77} type="일급" />
+          <GaugeComponent state={todayProgress} type="일급" />
           <EarningsCardToday
-            wonAmount={earningsSoFar}
+            wonAmount={todayEarnings.toLocaleString()}
             itemAmount="3"
             itemName="뿌링클"
           />
@@ -33,8 +39,8 @@ function GaugePage() {
 
       {viewType === "monthly" && (
         <>
-          <GaugeComponent state={77} type="월급" />
-          <EarningsCardMonth wageAmount="702,032" />
+          <GaugeComponent state={monthlyProgress} type="월급" />
+          <EarningsCardMonth wageAmount={monthlyEarnings.toLocaleString()} />
         </>
       )}
 
