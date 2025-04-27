@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 interface EarningsCardProps {
-  wonAmount: number;
+  wonAmount: string;
   itemAmount: string;
   itemName: string;
 }
