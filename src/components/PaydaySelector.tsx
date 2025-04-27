@@ -1,33 +1,32 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import styled from "styled-components";
 
-const PaydaySelector = () => {
-  const [day, setDay] = useState<number | ''>('');
+interface PaydaySelectorProps {
+  value: number | null;
+  onChange: (val: number) => void;
+}
 
+const PaydaySelector = ({ value, onChange }: PaydaySelectorProps) => {
   return (
     <Container>
       <Label htmlFor="day-select">매달</Label>
       <SelectorBox>
         <Select
           id="day-select"
-          value={day}
-          onChange={(e) => setDay(Number(e.target.value))}
+          value={value ?? ""}
+          onChange={(e) => onChange(Number(e.target.value))}
         >
-          <option value="" />
+          <option value="" disabled />
           {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
             <option key={d} value={d}>
               {d}
             </option>
           ))}
         </Select>
-        <UnitBadge>
-          일
-        </UnitBadge>
+        <UnitBadge>일</UnitBadge>
       </SelectorBox>
     </Container>
-    
-  )
-}
+  );
+};
 
 export default PaydaySelector;
 
@@ -36,7 +35,7 @@ const Container = styled.div`
   align-items: center;
   gap: 16px;
   width: fit-content;
-`
+`;
 
 const SelectorBox = styled.div`
   display: flex;
@@ -48,7 +47,7 @@ const SelectorBox = styled.div`
   height: 90px;
   border-radius: 30px;
   flex: 1;
-  
+
   select::-webkit-scrollbar {
     display: none;
   }
@@ -56,19 +55,19 @@ const SelectorBox = styled.div`
   option {
     text-align: center;
   }
-`
+`;
 
 const Label = styled.label`
   font-size: 32px;
-  font-family: 'DungGeunMo';
-  color: #1F4223;
+  font-family: "DungGeunMo";
+  color: #1f4223;
   white-space: nowrap;
-`
+`;
 
 const Select = styled.select`
   font-size: 32px;
   text-align: right;
-  font-family: 'Pretendard';
+  font-family: "Pretendard";
   color: #000;
   border-radius: 30px;
   border: none;
@@ -76,19 +75,18 @@ const Select = styled.select`
   background-color: transparent;
   height: 90px;
 
-
   /* 우측 화살표 제거 */
   -webkit-appearance: none;
 
   &:focus {
     outline: none;
   }
-`
+`;
 
 const UnitBadge = styled.span`
-  font-family: 'DungGeunMo';
+  font-family: "DungGeunMo";
   font-size: 32px;
-  color: #1F4223;
+  color: #1f4223;
   margin-left: 16px;
   margin-right: 5px;
-`
+`;
