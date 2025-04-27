@@ -1,34 +1,36 @@
 import { useState } from "react";
-import WorkTimeInput from "../components/WorkTimeInput";
-import TimePickerModal, { TimeValue } from "../components/TimePickerModal";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import InputPageLayout from "../components/InputPageLayout";
+import TimePickerModal, { TimeValue } from "../components/TimePickerModal";
 import WorkdayCalendar from "../components/WorkdayCalendar";
+import WorkTimeInput from "../components/WorkTimeInput";
+import { useWage } from "../contexts/WageContext";
 
 function Step2InputPage() {
+  const { wageData, setWageData } = useWage();
+
   const [isModalOpen, setModalOpen] = useState(false);
-  const [startTime, setStartTime] = useState<TimeValue>({
-    hour: "09",
-    minute: "00",
-    period: "오전",
-  } as const);
-  const [endTime, setEndTime] = useState<TimeValue>({
-    hour: "06",
-    minute: "00",
-    period: "오후",
-  } as const);
   const [target, setTarget] = useState<"start" | "end">("start");
 
   const handleOpenModal = (which: "start" | "end") => {
     setTarget(which);
     setModalOpen(true);
   };
+
   const handleConfirm = (selected: TimeValue) => {
-    if (target === "start") setStartTime(selected);
-    else setEndTime(selected);
+    if (target === "start") {
+      setWageData((prev) => ({ ...prev, startTime: selected }));
+    } else {
+      setWageData((prev) => ({ ...prev, endTime: selected }));
+    }
     setModalOpen(false);
   };
+
+  const handleChangeDays = (days: Date[]) => {
+    setWageData((prev) => ({ ...prev, selectedDays: days }));
+  };
+
   const navigate = useNavigate();
 
   return (
@@ -43,12 +45,12 @@ function Step2InputPage() {
               <TimeInputWrapper>
                 <WorkTimeInput
                   label="출근"
-                  value={startTime}
+                  value={wageData.startTime}
                   onClick={() => handleOpenModal("start")}
                 />
                 <WorkTimeInput
                   label="퇴근"
-                  value={endTime}
+                  value={wageData.endTime}
                   onClick={() => handleOpenModal("end")}
                 />
               </TimeInputWrapper>
@@ -58,7 +60,10 @@ function Step2InputPage() {
             title: "근무 요일을 모두 선택해주세요.",
             content: (
               <WorkdaysWrapper>
-                <WorkdayCalendar />
+                <WorkdayCalendar
+                  selectedDays={wageData.selectedDays}
+                  onChange={handleChangeDays}
+                />
               </WorkdaysWrapper>
             ),
           },
@@ -68,7 +73,9 @@ function Step2InputPage() {
         isOpen={isModalOpen}
         onClose={() => setModalOpen(false)}
         onConfirm={handleConfirm}
-        initialValue={target === "start" ? startTime : endTime}
+        initialValue={
+          target === "start" ? wageData.startTime : wageData.endTime
+        }
       />
     </>
   );

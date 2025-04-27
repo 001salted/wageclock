@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-
 const GlobalStyle = createGlobalStyle`
 
   @font-face {
@@ -10,11 +9,11 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
 
-  body {
+  * {
     font-family: 'Pretendard Variable', sans-serif;
     margin: 0;
   }
 
-`
+`;
 
 export default GlobalStyle;

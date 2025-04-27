@@ -1,13 +1,15 @@
-import { useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import styled from "styled-components";
 
-const WorkdayCalendar = () => {
-  const [selectedDays, setSelectedDays] = useState<Date[]>([]);
+interface WorkdayCalendarProps {
+  selectedDays: Date[];
+  onChange: (dates: Date[]) => void;
+}
 
+const WorkdayCalendar = ({ selectedDays, onChange }: WorkdayCalendarProps) => {
   const handleSelect = (dates: Date[] | undefined) => {
-    setSelectedDays(dates ?? []);
+    onChange(dates ?? []);
   };
 
   return (

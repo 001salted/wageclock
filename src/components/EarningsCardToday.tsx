@@ -2,19 +2,21 @@ import { useState } from "react";
 import styled from "styled-components";
 
 interface EarningsCardProps {
-  wonAmount: string;
+  wonAmount: number;
   itemAmount: string;
   itemName: string;
 }
 
-const EarningsCardToday = ({ wonAmount, 
-                        itemAmount, 
-                        itemName }: EarningsCardProps) => {
+const EarningsCardToday = ({
+  wonAmount,
+  itemAmount,
+  itemName,
+}: EarningsCardProps) => {
   const [showItem, setShowItem] = useState(false);
 
-  return(
+  return (
     <Card>
-      <Arrow onClick={() => setShowItem((prev) => !prev)}>{'<'}</Arrow>
+      <Arrow onClick={() => setShowItem((prev) => !prev)}>{"<"}</Arrow>
       <BoxWrapper>
         <TextBox>
           <Top>오늘 출근해서 현재까지</Top>
@@ -25,7 +27,7 @@ const EarningsCardToday = ({ wonAmount,
           </Bottom>
         </TextBox>
       </BoxWrapper>
-      <Arrow onClick={() => setShowItem((prev) => !prev)}>{'>'}</Arrow>
+      <Arrow onClick={() => setShowItem((prev) => !prev)}>{">"}</Arrow>
     </Card>
   );
 };
@@ -39,14 +41,14 @@ const Card = styled.div`
   margin: 17px auto 0;
   padding: 24px;
   border-radius: 10px;
-  background-color: #317F38;
+  background-color: #317f38;
   height: 173px;
   align-items: center;
   min-width: 800px;
 `;
 
 const Arrow = styled.button`
-  font-family: 'Press Start 2P';
+  font-family: "Press Start 2P";
   border: none;
   color: white;
   background-color: transparent;
@@ -57,8 +59,7 @@ const Arrow = styled.button`
 const BoxWrapper = styled.div`
   display: flex;
   justify-content: center;
-
-`
+`;
 
 const TextBox = styled.div`
   display: flex;
@@ -69,8 +70,8 @@ const TextBox = styled.div`
 `;
 
 const Top = styled.div`
-  color: #B0FE5B;
-  font-family: 'DungGeunMo';
+  color: #b0fe5b;
+  font-family: "DungGeunMo";
   padding-bottom: 15px;
 `;
 
@@ -81,7 +82,7 @@ const Bottom = styled.div`
 
 const Amount = styled.div`
   color: white;
-  font-family: 'Press Start 2P', DungGeunMo;
+  font-family: "Press Start 2P", DungGeunMo;
   padding-right: 20px;
   position: relative;
   top: 9px;
@@ -89,11 +90,11 @@ const Amount = styled.div`
 
 const AmountUnit = styled.div`
   color: white;
-  font-family: 'DungGeunMo';
+  font-family: "DungGeunMo";
   margin-right: 20px;
 `;
 
 const AmountText = styled.div`
-  color: #B0FE5B;
-  font-family: 'DungGeunMo';
+  color: #b0fe5b;
+  font-family: "DungGeunMo";
 `;
