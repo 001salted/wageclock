@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   * {
-    font-family: 'Pretendard Variable', sans-serif;
+    /* font-family: 'Pretendard Variable', sans-serif; */
     margin: 0;
   }
 
