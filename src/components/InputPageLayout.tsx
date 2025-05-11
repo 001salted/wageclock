@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import Indicator from "./Indicator";
-import NextButton from "./NextButton";
+import styled from 'styled-components';
+import Indicator from './Indicator';
+import NextButton from './NextButton';
 
 interface Section {
   title: string;
@@ -18,7 +18,7 @@ export default function InputPageLayout({
   step,
   sections,
   onNext,
-  nextLabel = "Next",
+  nextLabel = 'Next',
 }: InputPageLayoutProps) {
   return (
     <Wrapper>

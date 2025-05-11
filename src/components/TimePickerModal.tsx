@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 export type TimeValue = {
@@ -17,7 +17,7 @@ interface TimePickerModalProps {
 const TimePickerModal = ({
   isOpen,
   onConfirm,
-  initialValue = { hour: '09', minute: '00', period: '오전'},
+  initialValue = { hour: '09', minute: '00', period: '오전' },
 }: TimePickerModalProps) => {
   const [time, setTime] = useState<TimeValue>(initialValue);
 
@@ -32,18 +32,13 @@ const TimePickerModal = ({
       <Modal>
         <SelectGroup>
           <select
-              value={time.period}
-              onChange={(e) =>
-                setTime({ ...time, period: e.target.value as '오전' | '오후' })
-              }
-            >
-              <option value="오전">오전</option>
-              <option value="오후">오후</option>
-          </select>
-          <select
-            value={time.hour}
-            onChange={(e) => setTime({ ...time, hour: e.target.value })}
+            value={time.period}
+            onChange={e => setTime({ ...time, period: e.target.value as '오전' | '오후' })}
           >
+            <option value="오전">오전</option>
+            <option value="오후">오후</option>
+          </select>
+          <select value={time.hour} onChange={e => setTime({ ...time, hour: e.target.value })}>
             {Array.from({ length: 12 }, (_, i) => {
               const h = String(i + 1).padStart(2, '0');
               return <option key={h}>{h}</option>;
@@ -51,33 +46,24 @@ const TimePickerModal = ({
           </select>
           <span>시</span>
 
-          <select
-            value={time.minute}
-            onChange={(e) => setTime({ ...time, minute: e.target.value })}
-          >
+          <select value={time.minute} onChange={e => setTime({ ...time, minute: e.target.value })}>
             {Array.from({ length: 60 }, (_, i) => {
               const m = String(i).padStart(2, '0');
               return <option key={m}>{m}</option>;
             })}
           </select>
           <span>분</span>
-
-
         </SelectGroup>
 
         <ButtonGroup>
           <button onClick={() => onConfirm(time)}>확인</button>
         </ButtonGroup>
       </Modal>
-
     </Backdrop>
   );
 };
 
 export default TimePickerModal;
-
-
-
 
 const Backdrop = styled.div`
   position: fixed;
@@ -87,11 +73,11 @@ const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   border: 1px solid black;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const Modal = styled.div`
   background: white;
@@ -128,11 +114,12 @@ const SelectGroup = styled.div`
   }
 
   select:nth-child(1) {
-    width: 100px; 
+    width: 100px;
   }
 
   /* Chrome, Edge, Safari에서만 먹힘 */
-  select, option {
+  select,
+  option {
     text-align: center;
   }
 
@@ -162,19 +149,18 @@ const ButtonGroup = styled.div`
     font-size: 21px;
     font-family: 'Pretendard';
     letter-spacing: 0.1em;
-    color: #1F4223;
+    color: #1f4223;
 
     transition: background-color 0.2s;
 
-    background-color: #A8E665;
+    background-color: #a8e665;
 
     &:hover {
-      background-color: #A8E665;
+      background-color: #a8e665;
     }
 
     &:active {
-      background-color: #B0D097;
+      background-color: #b0d097;
     }
   }
 `;
-

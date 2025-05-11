@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import GaugeViewToggle from "./GaugeViewToggle";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import GaugeViewToggle from './GaugeViewToggle';
 
 interface HeaderProps {
   viewType: 'daily' | 'monthly';
@@ -12,15 +12,14 @@ const Header = ({ viewType, onChange }: HeaderProps) => {
 
   return (
     <Container>
-      <Logo onClick={() => navigate("/")}>wageclock</Logo>
-      <GaugeViewToggle 
+      <Logo onClick={() => navigate('/')}>wageclock</Logo>
+      <GaugeViewToggle
         value={viewType === 'daily' ? '일급' : '월급'}
-        onChange={(val) => onChange(val === '일급' ? 'daily' : 'monthly')}
+        onChange={val => onChange(val === '일급' ? 'daily' : 'monthly')}
       />
     </Container>
-    
-  )
-}
+  );
+};
 
 export default Header;
 
@@ -33,13 +32,13 @@ const Container = styled.div`
   margin: 0 auto;
   align-items: center;
   height: 78px;
-  background-color: #B0F25B;
+  background-color: #b0f25b;
   border-radius: 10px;
   min-width: 800px;
-`
+`;
 
 const Logo = styled.h1`
   font-size: 40px;
   font-family: 'Press Start 2P';
-  color: #1F4223;
-`
+  color: #1f4223;
+`;

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import wonImage from "../assets/wonImage.png";
+import styled from 'styled-components';
+import wonImage from '../assets/wonImage.png';
 
 const WonSigns = () => {
   return (
@@ -10,9 +10,8 @@ const WonSigns = () => {
         ))}
       </Container>
     </Wrapper>
-
-  )
-}
+  );
+};
 
 export default WonSigns;
 
@@ -20,12 +19,12 @@ const Wrapper = styled.div`
   display: flex;
   overflow: hidden;
   width: 84%;
-  background-color: #CCD9C4;
+  background-color: #ccd9c4;
   margin: 17px auto;
   padding: 0 24px;
   min-width: 800px;
   border-radius: 10px;
-`
+`;
 
 const Container = styled.div`
   flex-wrap: nowrap;
@@ -36,9 +35,9 @@ const Container = styled.div`
   gap: 0;
   border-radius: 10px;
   padding: 0 0;
-`
+`;
 
 const Icon = styled.img`
   image-rendering: pixelated;
-  width: 123px; 
+  width: 123px;
 `;

@@ -1,12 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface EarningsCardProps {
   wageAmount: string;
 }
 
 const EarningsCardMonth = ({ wageAmount }: EarningsCardProps) => {
-
-  return(
+  return (
     <Card>
       <BoxWrapper>
         <TextBox>
@@ -39,8 +38,7 @@ const Card = styled.div`
 const BoxWrapper = styled.div`
   display: flex;
   justify-content: center;
-
-`
+`;
 
 const TextBox = styled.div`
   display: flex;
@@ -51,7 +49,7 @@ const TextBox = styled.div`
 `;
 
 const Top = styled.div`
-  color: #1F4223;
+  color: #1f4223;
   font-family: 'DungGeunMo';
   padding-bottom: 15px;
 `;
@@ -62,7 +60,7 @@ const Bottom = styled.div`
 `;
 
 const Amount = styled.div`
-  color: #5E953F;
+  color: #5e953f;
   font-family: 'Press Start 2P', DungGeunMo;
   padding-right: 20px;
   position: relative;
@@ -70,6 +68,6 @@ const Amount = styled.div`
 `;
 
 const AmountText = styled.div`
-  color: #1F4223;
+  color: #1f4223;
   font-family: 'DungGeunMo';
 `;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface PaydaySelectorProps {
   value: number | null;
@@ -12,11 +12,11 @@ const PaydaySelector = ({ value, onChange }: PaydaySelectorProps) => {
       <SelectorBox>
         <Select
           id="day-select"
-          value={value ?? ""}
-          onChange={(e) => onChange(Number(e.target.value))}
+          value={value ?? ''}
+          onChange={e => onChange(Number(e.target.value))}
         >
           <option value="" disabled />
-          {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
+          {Array.from({ length: 31 }, (_, i) => i + 1).map(d => (
             <option key={d} value={d}>
               {d}
             </option>
@@ -59,7 +59,7 @@ const SelectorBox = styled.div`
 
 const Label = styled.label`
   font-size: 32px;
-  font-family: "DungGeunMo";
+  font-family: 'DungGeunMo';
   color: #1f4223;
   white-space: nowrap;
 `;
@@ -67,7 +67,7 @@ const Label = styled.label`
 const Select = styled.select`
   font-size: 32px;
   text-align: right;
-  font-family: "Pretendard";
+  font-family: 'Pretendard';
   color: #000;
   border-radius: 30px;
   border: none;
@@ -84,7 +84,7 @@ const Select = styled.select`
 `;
 
 const UnitBadge = styled.span`
-  font-family: "DungGeunMo";
+  font-family: 'DungGeunMo';
   font-size: 32px;
   color: #1f4223;
   margin-left: 16px;

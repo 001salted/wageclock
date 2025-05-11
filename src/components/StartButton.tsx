@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface StartButtonProps {
-  onClick? : () => void;
+  onClick?: () => void;
   children: React.ReactNode;
 }
 
@@ -17,20 +17,20 @@ const ButtonStyled = styled.button`
   border: none;
   border-radius: 999px;
   font-size: 29px;
-  font-family: "DungGeunMo";
+  font-family: 'DungGeunMo';
   cursor: pointer;
 
   transition: background-color 0.2s;
-  
+
   // 기본 상태
-  background-color: #A8E665; 
+  background-color: #a8e665;
 
   // hover 상태
   &:hover {
-    background-color: #B0FE5B;
+    background-color: #b0fe5b;
   }
 
   &:active {
-    background-color: #B0D097;
+    background-color: #b0d097;
   }
-`
+`;

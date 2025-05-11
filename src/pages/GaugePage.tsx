@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
-import EarningsCardMonth from "../components/EarningsCardMonth";
-import EarningsCardToday from "../components/EarningsCardToday";
-import GaugeComponent from "../components/GaugeComponent";
-import Header from "../components/Header";
-import WonSigns from "../components/WonSigns";
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import EarningsCardMonth from '../components/EarningsCardMonth';
+import EarningsCardToday from '../components/EarningsCardToday';
+import GaugeComponentContainer from '../components/GaugeComponentContainer';
+import Header from '../components/Header';
+import WonSigns from '../components/WonSigns';
 
 interface GaugePageState {
   todayProgress: number;
@@ -20,15 +20,15 @@ function GaugePage() {
   const { todayProgress, todayEarnings, monthlyProgress, monthlyEarnings } =
     state as GaugePageState;
 
-  const [viewType, setViewType] = useState<"daily" | "monthly">("daily");
+  const [viewType, setViewType] = useState<'daily' | 'monthly'>('daily');
 
   return (
-    <main>
+    <GaugeMain>
       <Header viewType={viewType} onChange={setViewType} />
 
-      {viewType === "daily" && (
+      {viewType === 'daily' && (
         <>
-          <GaugeComponent state={todayProgress} type="일급" />
+          <GaugeComponentContainer state={todayProgress} type="일급" />
           <EarningsCardToday
             wonAmount={todayEarnings.toLocaleString()}
             itemAmount="3"
@@ -37,16 +37,22 @@ function GaugePage() {
         </>
       )}
 
-      {viewType === "monthly" && (
+      {viewType === 'monthly' && (
         <>
-          <GaugeComponent state={monthlyProgress} type="월급" />
+          <GaugeComponentContainer state={monthlyProgress} type="월급" />
           <EarningsCardMonth wageAmount={monthlyEarnings.toLocaleString()} />
         </>
       )}
 
       <WonSigns />
-    </main>
+    </GaugeMain>
   );
 }
 
 export default GaugePage;
+
+const GaugeMain = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;

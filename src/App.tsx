@@ -1,13 +1,13 @@
-import { Route, Routes } from "react-router-dom";
-import { WageProvider } from "./contexts/WageContext";
-import GaugePage from "./pages/GaugePage";
-import LandingPage from "./pages/LandingPage";
-import LoadingPage from "./pages/LoadingPage";
-import Step1InputPage from "./pages/Step1InputPage";
-import Step2InputPage from "./pages/Step2InputPage";
-import Step3InputPage from "./pages/Step3InputPage";
-import UserTypeSelectPage from "./pages/UserTypeSelectPage";
-import GlobalStyle from "./styles/GlobalStyle";
+import { Route, Routes } from 'react-router-dom';
+import { WageProvider } from './contexts/WageContext';
+import GaugePage from './pages/GaugePage';
+import LandingPage from './pages/LandingPage';
+import LoadingPage from './pages/LoadingPage';
+import Step1InputPage from './pages/Step1InputPage';
+import Step2InputPage from './pages/Step2InputPage';
+import Step3InputPage from './pages/Step3InputPage';
+import UserTypeSelectPage from './pages/UserTypeSelectPage';
+import GlobalStyle from './styles/GlobalStyle';
 
 function App() {
   return (

@@ -1,9 +1,9 @@
 export function calculatePerMinuteWage(
-  wageType: "hourly" | "monthly",
+  wageType: 'hourly' | 'monthly',
   wageAmount: number,
-  totalMonthlyWorkMinutes: number
+  totalMonthlyWorkMinutes: number,
 ): number {
-  if (wageType === "hourly") {
+  if (wageType === 'hourly') {
     return wageAmount / 60;
   } else {
     if (totalMonthlyWorkMinutes === 0) return 0;
@@ -11,16 +11,13 @@ export function calculatePerMinuteWage(
   }
 }
 
-export function calculateTodayEarnings(
-  passedMinutesToday: number,
-  perMinuteWage: number
-): number {
+export function calculateTodayEarnings(passedMinutesToday: number, perMinuteWage: number): number {
   return Math.round(passedMinutesToday * perMinuteWage);
 }
 
 export function calculateMonthlyEarnings(
   passedMinutesThisMonth: number,
-  perMinuteWage: number
+  perMinuteWage: number,
 ): number {
   return Math.round(passedMinutesThisMonth * perMinuteWage);
 }

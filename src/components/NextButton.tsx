@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 import { FaArrowRight } from 'react-icons/fa';
 
@@ -15,8 +15,8 @@ const NextButton = ({ onClick, label = 'NEXT' }: NextButtonProps) => {
       </IconButton>
       <Label>{label}</Label>
     </Wrapper>
-  )
-}
+  );
+};
 
 export default NextButton;
 
@@ -42,20 +42,20 @@ const IconButton = styled.button`
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: #A8E665;
+    background-color: #a8e665;
   }
 
   &:active {
-    background-color: #B0D097;
+    background-color: #b0d097;
   }
 
   svg {
-  color: #1F4223;
- }
+    color: #1f4223;
+  }
 `;
 
 const Label = styled.span`
   font-family: 'DungGeunMo';
   font-size: 32px;
-  color: #1F4223;
-`
+  color: #1f4223;
+`;

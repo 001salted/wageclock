@@ -1,21 +1,18 @@
-import { TimeValue } from "../contexts/WageContext";
+import { TimeValue } from '../contexts/WageContext';
 
 // 출근시간, 퇴근시간을 분 단위로 바꿔주는 공통 함수
 export function parseTimeToMinutes(time: TimeValue): number {
   let hour = parseInt(time.hour, 10);
   const minute = parseInt(time.minute, 10);
 
-  if (time.period === "오후" && hour !== 12) hour += 12;
-  if (time.period === "오전" && hour === 12) hour = 0;
+  if (time.period === '오후' && hour !== 12) hour += 12;
+  if (time.period === '오전' && hour === 12) hour = 0;
 
   return hour * 60 + minute;
 }
 
 // 하루 근무시간 (분)
-export function calculateWorkMinutesPerDay(
-  startTime: TimeValue,
-  endTime: TimeValue
-): number {
+export function calculateWorkMinutesPerDay(startTime: TimeValue, endTime: TimeValue): number {
   const startMinutes = parseTimeToMinutes(startTime);
   const endMinutes = parseTimeToMinutes(endTime);
 
@@ -23,10 +20,7 @@ export function calculateWorkMinutesPerDay(
 }
 
 // 오늘 현재시각까지 경과한 근무시간 (분)
-export function calculatePassedWorkMinutesToday(
-  startTime: TimeValue,
-  endTime: TimeValue
-): number {
+export function calculatePassedWorkMinutesToday(startTime: TimeValue, endTime: TimeValue): number {
   const now = new Date();
 
   const startMinutes = parseTimeToMinutes(startTime);
@@ -46,10 +40,9 @@ export function calculatePassedWorkMinutesToday(
 export function calculateTotalWorkMinutesPerMonth(
   startTime: TimeValue,
   endTime: TimeValue,
-  selectedDays: Date[]
+  selectedDays: Date[],
 ): number {
-  const workMinutesPerDay =
-    parseTimeToMinutes(endTime) - parseTimeToMinutes(startTime);
+  const workMinutesPerDay = parseTimeToMinutes(endTime) - parseTimeToMinutes(startTime);
   const totalWorkMinutes = workMinutesPerDay * selectedDays.length;
   return totalWorkMinutes;
 }
@@ -58,7 +51,7 @@ export function calculateTotalWorkMinutesPerMonth(
 export function calculatePassedWorkMinutesThisMonth(
   startTime: TimeValue,
   endTime: TimeValue,
-  selectedDays: Date[]
+  selectedDays: Date[],
 ): number {
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -66,16 +59,13 @@ export function calculatePassedWorkMinutesThisMonth(
 
   let totalPassedMinutes = 0;
 
-  selectedDays.forEach((day) => {
+  selectedDays.forEach(day => {
     const workDay = new Date(day.getFullYear(), day.getMonth(), day.getDate());
 
     if (workDay < today) {
       totalPassedMinutes += workMinutesPerDay;
     } else if (workDay.getTime() === today.getTime()) {
-      const totalWorkMinutesToday = calculateWorkMinutesPerDay(
-        startTime,
-        endTime
-      );
+      const totalWorkMinutesToday = calculateWorkMinutesPerDay(startTime, endTime);
       const passedToday = calculatePassedWorkMinutesToday(startTime, endTime);
 
       if (passedToday <= 0) {
@@ -96,5 +86,5 @@ export function calculatePassedWorkMinutesThisMonth(
 
 export function isTodayAWorkDay(selectedDays: Date[]): boolean {
   const todayStr = new Date().toDateString();
-  return selectedDays.some((day) => new Date(day).toDateString() === todayStr);
+  return selectedDays.some(day => new Date(day).toDateString() === todayStr);
 }
