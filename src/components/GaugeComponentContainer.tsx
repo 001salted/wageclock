@@ -7,13 +7,22 @@ interface GaugeComponentContainerProps {
 }
 
 function GaugeComponentContainer({ state, type }: GaugeComponentContainerProps) {
+  const isDaily = type === '일급';
+
   return (
     <GaugeComponentContainerWrap $type={type}>
       <GaugeComponent state={state} type={type} />
-      <OutDoorTime $type={type}>
-        <Time $type={type}>{`3시간 58분 후`}</Time>
-        {'퇴근!'}
-      </OutDoorTime>
+      {isDaily ? (
+        <OutDoorTime $type={type}>
+          <Time $type={type}>{`3시간 58분 후`}</Time>
+          {'퇴근!'}
+        </OutDoorTime>
+      ) : (
+        <OutDoorTime $type={type}>
+          <Time $type={type}>{`18일 후는`}</Time>
+          {'월급날!'}
+        </OutDoorTime>
+      )}
     </GaugeComponentContainerWrap>
   );
 }

@@ -6,6 +6,8 @@ import GaugeComponentContainer from '../components/GaugeComponentContainer';
 import Header from '../components/Header';
 import WonSigns from '../components/WonSigns';
 
+import styled from 'styled-components';
+
 interface GaugePageState {
   todayProgress: number;
   todayEarnings: number;
@@ -55,4 +57,6 @@ const GaugeMain = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;
