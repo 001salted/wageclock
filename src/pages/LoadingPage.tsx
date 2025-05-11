@@ -10,6 +10,7 @@ import {
   calculatePassedWorkMinutesToday,
   calculateTotalWorkMinutesPerMonth,
   calculateWorkMinutesPerDay,
+  isTodayAWorkDay,
 } from "../utils/timeUtils";
 import {
   calculateMonthlyEarnings,
@@ -54,10 +55,10 @@ function LoadingPage() {
         wageAmount as number,
         totalWorkMinutesPerMonth
       );
-      const todayEarnings = calculateTodayEarnings(
-        passedMinutesToday,
-        perMinuteWage
-      );
+      const isWorkdayToday = isTodayAWorkDay(selectedDays);
+      const todayEarnings = isWorkdayToday
+        ? calculateTodayEarnings(passedMinutesToday, perMinuteWage)
+        : 0;
       const monthlyEarnings = calculateMonthlyEarnings(
         passedMinutesThisMonth,
         perMinuteWage
