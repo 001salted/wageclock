@@ -93,3 +93,8 @@ export function calculatePassedWorkMinutesThisMonth(
   });
   return totalPassedMinutes;
 }
+
+export function isTodayAWorkDay(selectedDays: Date[]): boolean {
+  const todayStr = new Date().toDateString();
+  return selectedDays.some((day) => new Date(day).toDateString() === todayStr);
+}
