@@ -37,7 +37,13 @@ function Step2InputPage() {
     <>
       <InputPageLayout
         step={2}
-        onNext={() => navigate('/step3')}
+        onNext={() => {
+          if (wageData.selectedDays.length !== 0) {
+            navigate('/step3');
+          } else {
+            alert('근무 요일을 선택해주세요!');
+          }
+        }}
         sections={[
           {
             title: '출퇴근 시간을 입력해주세요.',

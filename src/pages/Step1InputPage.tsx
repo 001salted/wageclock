@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import InputPageLayout from "../components/InputPageLayout";
-import WageInput from "../components/WageInput";
-import WageTypeToggle from "../components/WageTypeToggle";
-import { useWage } from "../contexts/WageContext";
+import { useNavigate } from 'react-router-dom';
+import InputPageLayout from '../components/InputPageLayout';
+import WageInput from '../components/WageInput';
+import WageTypeToggle from '../components/WageTypeToggle';
+import { useWage } from '../contexts/WageContext';
 
 function Step1InputPage() {
   const { wageData, setWageData } = useWage();
@@ -14,31 +14,35 @@ function Step1InputPage() {
         step={1}
         sections={[
           {
-            title: "급여 기준을 선택해주세요.",
+            title: '급여 기준을 선택해주세요.',
             content: (
               <WageTypeToggle
-                value={wageData.wageType === "hourly" ? "시급" : "월급"}
-                onChange={(val) => {
-                  const type = val === "시급" ? "hourly" : "monthly";
-                  setWageData((prev) => ({ ...prev, wageType: type }));
+                value={wageData.wageType === 'hourly' ? '시급' : '월급'}
+                onChange={val => {
+                  const type = val === '시급' ? 'hourly' : 'monthly';
+                  setWageData(prev => ({ ...prev, wageType: type }));
                 }}
               />
             ),
           },
           {
-            title: "급여를 입력해주세요.",
+            title: '급여를 입력해주세요.',
             content: (
               <WageInput
                 wageType={wageData.wageType}
                 value={wageData.wageAmount}
-                onChange={(val) =>
-                  setWageData((prev) => ({ ...prev, wageAmount: val }))
-                }
+                onChange={val => setWageData(prev => ({ ...prev, wageAmount: val }))}
               />
             ),
           },
         ]}
-        onNext={() => navigate("/step2")}
+        onNext={() => {
+          if (wageData.wageAmount) {
+            navigate('/step2');
+          } else {
+            alert('급여를 입력해주세요!');
+          }
+        }}
       />
     </main>
   );
