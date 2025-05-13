@@ -85,6 +85,8 @@ const TimeInputWrapper = styled.div`
 
 const WorkdaysWrapper = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
   width: 690px;
 `;

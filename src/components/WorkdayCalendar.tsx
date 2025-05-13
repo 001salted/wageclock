@@ -27,4 +27,27 @@ const WorkdayCalendar = ({ selectedDays, onChange }: WorkdayCalendarProps) => {
 
 export default WorkdayCalendar;
 
-const CalendarWrapper = styled.div``;
+const CalendarWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    --rdp-today-color: black;
+    --rdp-selected-border: #134318 2px solid;
+    --rdp-accent-color: #134318;
+  }
+
+  .rdp-selected {
+    font-size: 26px;
+    font-weight: 400;
+    background-color: #134318;
+    border-radius: 50%;
+    color: #ffffff;
+  }
+`;
