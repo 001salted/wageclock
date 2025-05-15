@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputPageLayout from '../components/InputPageLayout';
+import InputPageModal from '../components/InputPageModal';
 import TimePickerModal, { TimeValue } from '../components/TimePickerModal';
 import WorkdayCalendar from '../components/WorkdayCalendar';
 import WorkTimeInput from '../components/WorkTimeInput';
@@ -9,7 +10,7 @@ import { useWage } from '../contexts/WageContext';
 
 function Step2InputPage() {
   const { wageData, setWageData } = useWage();
-
+  const [modalState, setModalState] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [target, setTarget] = useState<'start' | 'end'>('start');
 
@@ -41,7 +42,7 @@ function Step2InputPage() {
           if (wageData.selectedDays.length !== 0) {
             navigate('/step3');
           } else {
-            alert('근무 요일을 선택해주세요!');
+            setModalState(!modalState);
           }
         }}
         sections={[
@@ -78,6 +79,14 @@ function Step2InputPage() {
         onConfirm={handleConfirm}
         initialValue={target === 'start' ? wageData.startTime : wageData.endTime}
       />
+      {modalState ? (
+        <InputPageModal
+          text="근무 요일을 모두 선택해주세요!"
+          onClose={(state: boolean) => setModalState(state)}
+        />
+      ) : (
+        <></>
+      )}
     </>
   );
 }

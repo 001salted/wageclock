@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InputPageLayout from '../components/InputPageLayout';
+import InputPageModal from '../components/InputPageModal';
 import WageInput from '../components/WageInput';
 import WageTypeToggle from '../components/WageTypeToggle';
 import { useWage } from '../contexts/WageContext';
 
 function Step1InputPage() {
   const { wageData, setWageData } = useWage();
+  const [modalState, setModalState] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -40,10 +43,18 @@ function Step1InputPage() {
           if (wageData.wageAmount) {
             navigate('/step2');
           } else {
-            alert('급여를 입력해주세요!');
+            setModalState(!modalState);
           }
         }}
       />
+      {modalState ? (
+        <InputPageModal
+          text="급여를 입력해주세요!"
+          onClose={(state: boolean) => setModalState(state)}
+        />
+      ) : (
+        <></>
+      )}
     </main>
   );
 }
