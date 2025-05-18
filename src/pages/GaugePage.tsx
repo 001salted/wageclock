@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import EarningsCardMonth from '../components/EarningsCardMonth';
 import EarningsCardToday from '../components/EarningsCardToday';
 import GaugeComponentContainer from '../components/GaugeComponentContainer';
@@ -8,6 +8,7 @@ import WonSigns from '../components/WonSigns';
 import { convertToUnits } from '../utils/moneyUtils';
 
 import styled from 'styled-components';
+import { useWage } from '../contexts/WageContext';
 
 interface GaugePageState {
   todayProgress: number;
@@ -27,6 +28,8 @@ const itemNameMap: Record<(typeof ITEM_ORDER)[number], string> = {
 
 function GaugePage() {
   const { state } = useLocation();
+  const navigate = useNavigate();
+  const { resetWageData } = useWage();
 
   const { todayProgress, todayEarnings, monthlyProgress, monthlyEarnings } =
     state as GaugePageState;
@@ -61,6 +64,11 @@ function GaugePage() {
     return () => clearInterval(interval);
   }, [todayEarnings]);
 
+  const handleReset = () => {
+    resetWageData();
+    navigate('/step1');
+  };
+
   return (
     <GaugeMain>
       <Header viewType={viewType} onChange={setViewType} />
@@ -84,6 +92,7 @@ function GaugePage() {
       )}
 
       <WonSigns />
+      <ResetButton onClick={handleReset}>입력값 초기화하기</ResetButton>
     </GaugeMain>
   );
 }
@@ -96,4 +105,13 @@ const GaugeMain = styled.main`
   justify-content: center;
   align-items: center;
   height: 100vh;
+`;
+
+const ResetButton = styled.button`
+  font-family: DungGeunMo;
+  border: none;
+  background: none;
+  font-size: 30px;
+  margin-top: 10px;
+  cursor: pointer;
 `;

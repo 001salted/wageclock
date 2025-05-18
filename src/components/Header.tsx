@@ -41,4 +41,5 @@ const Logo = styled.h1`
   font-size: 40px;
   font-family: 'Press Start 2P';
   color: #1f4223;
+  cursor: pointer;
 `;
