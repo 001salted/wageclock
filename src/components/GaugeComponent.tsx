@@ -7,6 +7,7 @@ interface GaugeComponentProps {
 }
 
 function GaugeComponent({ state, type }: GaugeComponentProps) {
+  console.log(state);
   return (
     <GaugeComponentWrap>
       <Gauge $state={state} $type={type}>
@@ -21,7 +22,7 @@ export default GaugeComponent;
 
 const GaugeComponentWrap = styled.div`
   display: flex;
-  width: 810px;
+  width: 60%;
   height: 60px;
 `;
 
@@ -29,7 +30,7 @@ const Gauge = styled.div<{ $state: number; $type: string }>`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: ${props => `${(props.$state / 100) * 720}`}px;
+  width: calc(${props => `${props.$state + 5}`}% - 60px);
   background-color: #${props => (props.$type === '일급' ? 'B0FE5B' : '1F4223')};
   padding-right: 20px;
   font-size: 32px;
