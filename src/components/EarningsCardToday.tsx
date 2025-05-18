@@ -10,16 +10,20 @@ interface EarningsCardProps {
 const EarningsCardToday = ({ wonAmount, itemAmount, itemName }: EarningsCardProps) => {
   const [showItem, setShowItem] = useState(false);
 
+  const topText = showItem ? `지금까지 번 돈으로` : `오늘 출근해서 현재까지`;
+
+  const amountText = showItem ? ` 살 수 있어요!` : ` 벌었습니다!`;
+
   return (
-    <Card>
+    <Card $showItem={showItem}>
       <Arrow onClick={() => setShowItem(prev => !prev)}>{'<'}</Arrow>
       <BoxWrapper>
         <TextBox>
-          <Top>오늘 출근해서 현재까지</Top>
+          <Top>{topText}</Top>
           <Bottom>
             <Amount>{showItem ? `${itemAmount}` : `${wonAmount}`}</Amount>
-            <AmountUnit>{showItem ? `${itemName}` : `원`}</AmountUnit>
-            <AmountText> 벌었습니다!</AmountText>
+            <AmountUnit>{showItem ? itemName : `원`}</AmountUnit>
+            <AmountText>{amountText}</AmountText>
           </Bottom>
         </TextBox>
       </BoxWrapper>
@@ -30,14 +34,14 @@ const EarningsCardToday = ({ wonAmount, itemAmount, itemName }: EarningsCardProp
 
 export default EarningsCardToday;
 
-const Card = styled.div`
+const Card = styled.div<{ $showItem: boolean }>`
   display: flex;
   justify-content: space-between;
   width: 84%;
   margin: 17px auto 0;
   padding: 24px;
   border-radius: 10px;
-  background-color: #317f38;
+  background-color: ${props => (props.$showItem ? '#b0fe5b' : '#317f38')};
   height: 173px;
   align-items: center;
   min-width: 800px;
@@ -66,7 +70,7 @@ const TextBox = styled.div`
 `;
 
 const Top = styled.div`
-  color: #b0fe5b;
+  color: #1f4223;
   font-family: 'DungGeunMo';
   padding-bottom: 15px;
 `;
@@ -77,7 +81,7 @@ const Bottom = styled.div`
 `;
 
 const Amount = styled.div`
-  color: white;
+  color: black;
   font-family: 'Press Start 2P', DungGeunMo;
   padding-right: 20px;
   position: relative;
@@ -85,12 +89,12 @@ const Amount = styled.div`
 `;
 
 const AmountUnit = styled.div`
-  color: white;
+  color: black;
   font-family: 'DungGeunMo';
   margin-right: 20px;
 `;
 
 const AmountText = styled.div`
-  color: #b0fe5b;
+  color: #1f4223;
   font-family: 'DungGeunMo';
 `;

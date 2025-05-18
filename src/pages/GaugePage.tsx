@@ -59,7 +59,7 @@ function GaugePage() {
         setItemName(itemNameMap[nextItem]);
         return nextIndex;
       });
-    }, 1500);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [todayEarnings]);
