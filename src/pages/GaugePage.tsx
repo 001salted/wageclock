@@ -107,4 +107,10 @@ const GaugeMain = styled.main`
   height: 100vh;
 `;
 
-const ResetButton = styled.button``;
+const ResetButton = styled.button`
+  font-family: DungGeunMo;
+  border: none;
+  background: none;
+  font-size: 30px;
+  margin-top: 10px;
+`;
