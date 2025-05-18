@@ -7,7 +7,6 @@ interface GaugeComponentProps {
 }
 
 function GaugeComponent({ state, type }: GaugeComponentProps) {
-  console.log(state);
   return (
     <GaugeComponentWrap>
       <Gauge $state={state} $type={type}>
