@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import InputPageLayout from '../components/InputPageLayout';
-import InputPageModal from '../components/InputPageModal';
-import WageInput from '../components/WageInput';
-import WageTypeToggle from '../components/WageTypeToggle';
+import InputPageLayout from '../components/input/InputPageLayout';
+import InputPageModal from '../components/input/InputPageModal';
+import WageInput from '../components/input/WageInput';
+import WageTypeToggle from '../components/input/WageTypeToggle';
 import { useWage } from '../contexts/WageContext';
 
 function Step1InputPage() {

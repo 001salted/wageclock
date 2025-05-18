@@ -4,7 +4,7 @@ import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
 import { TbCurrencyDollar } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import StartButton from '../components/StartButton';
+import StartButton from '../components/common/StartButton';
 
 function LandingPage() {
   const navigate = useNavigate();

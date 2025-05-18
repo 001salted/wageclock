@@ -6,7 +6,6 @@ import LoadingPage from './pages/LoadingPage';
 import Step1InputPage from './pages/Step1InputPage';
 import Step2InputPage from './pages/Step2InputPage';
 import Step3InputPage from './pages/Step3InputPage';
-import UserTypeSelectPage from './pages/UserTypeSelectPage';
 import GlobalStyle from './styles/GlobalStyle';
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
         <Route path="/gauge" element={<GaugePage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/load" element={<LoadingPage />} />
-        <Route path="/user" element={<UserTypeSelectPage />} />
       </Routes>
     </WageProvider>
   );

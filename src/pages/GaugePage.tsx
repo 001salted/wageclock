@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import EarningsCardMonth from '../components/EarningsCardMonth';
-import EarningsCardToday from '../components/EarningsCardToday';
-import GaugeComponentContainer from '../components/GaugeComponentContainer';
-import Header from '../components/Header';
-import WonSigns from '../components/WonSigns';
+import EarningsCardMonth from '../components/gauge/EarningsCardMonth';
+import EarningsCardToday from '../components/gauge/EarningsCardToday';
+import GaugeComponentContainer from '../components/gauge/GaugeComponentContainer';
+import Header from '../components/gauge/Header';
+import WonSigns from '../components/gauge/WonSigns';
 import { convertToUnits } from '../utils/moneyUtils';
 
 import styled from 'styled-components';
@@ -59,7 +59,7 @@ function GaugePage() {
         setItemName(itemNameMap[nextItem]);
         return nextIndex;
       });
-    }, 1500);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [todayEarnings]);

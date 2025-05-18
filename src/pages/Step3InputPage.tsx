@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import InputPageLayout from '../components/InputPageLayout';
-import InputPageModal from '../components/InputPageModal';
-import PaydaySelector from '../components/PaydaySelector';
+import InputPageLayout from '../components/input/InputPageLayout';
+import InputPageModal from '../components/input/InputPageModal';
+import PaydaySelector from '../components/input/PaydaySelector';
 import { useWage } from '../contexts/WageContext';
 
 function Step3InputPage() {

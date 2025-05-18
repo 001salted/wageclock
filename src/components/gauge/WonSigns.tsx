@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import wonImage from '../assets/wonImage.png';
+import wonImage from '../../assets/wonImage.png';
 
 const WonSigns = () => {
   return (
