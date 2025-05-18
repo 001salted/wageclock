@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import InputPageLayout from '../components/InputPageLayout';
+import InputPageLayout from '../components/input/InputPageLayout';
+import TimePickerModal, { TimeValue } from '../components/input/TimePickerModal';
+import WorkdayCalendar from '../components/input/WorkdayCalendar';
+import WorkTimeInput from '../components/input/WorkTimeInput';
 import InputPageModal from '../components/InputPageModal';
-import TimePickerModal, { TimeValue } from '../components/TimePickerModal';
-import WorkdayCalendar from '../components/WorkdayCalendar';
-import WorkTimeInput from '../components/WorkTimeInput';
 import { useWage } from '../contexts/WageContext';
 
 function Step2InputPage() {

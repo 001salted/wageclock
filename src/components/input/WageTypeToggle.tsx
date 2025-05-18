@@ -1,4 +1,4 @@
-import { Slide, ToggleButton, ToggleWrapper } from './ToggleStyles';
+import { Slide, ToggleButton, ToggleWrapper } from '../common/ToggleStyles';
 
 interface ToggleProps {
   value: string;
