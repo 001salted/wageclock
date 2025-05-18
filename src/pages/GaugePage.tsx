@@ -113,4 +113,5 @@ const ResetButton = styled.button`
   background: none;
   font-size: 30px;
   margin-top: 10px;
+  cursor: pointer;
 `;
