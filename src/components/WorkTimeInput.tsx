@@ -11,12 +11,10 @@ const WorkTimeInput = ({ label, value, onClick }: WorkTimeInputProps) => {
   return (
     <Container>
       <Label>{label}</Label>
-      <TimeButton onClick={onClick}>
-        {`${value.period} ${value.hour} : ${value.minute}`}
-      </TimeButton>
+      <TimeButton onClick={onClick}>{`${value.period} ${value.hour} : ${value.minute}`}</TimeButton>
     </Container>
-  )
-}
+  );
+};
 
 export default WorkTimeInput;
 
@@ -26,14 +24,14 @@ const Container = styled.div`
   width: 320px;
   gap: 30px;
   height: 90px;
-`
+`;
 
 const Label = styled.label`
   font-family: 'DungGeunMo';
   font-size: 32px;
   white-space: nowrap;
-  color: #1F4223;
-`
+  color: #1f4223;
+`;
 
 const TimeButton = styled.button`
   font-family: 'Pretendard';
@@ -44,4 +42,4 @@ const TimeButton = styled.button`
   cursor: pointer;
   width: 220px;
   height: 100%;
-`
+`;

@@ -1,6 +1,6 @@
 export function calculateWorkProgressToday(
   passedMinutesToday: number,
-  totalWorkMinutesPerDay: number
+  totalWorkMinutesPerDay: number,
 ): number {
   if (totalWorkMinutesPerDay === 0) return 0;
   const progress = (passedMinutesToday / totalWorkMinutesPerDay) * 100;
@@ -13,7 +13,7 @@ export function calculateWorkProgressToday(
 
 export function calculateWorkProgressThisMonth(
   passedMinutesThisMonth: number,
-  totalWorkMinutesPerMonth: number
+  totalWorkMinutesPerMonth: number,
 ): number {
   if (totalWorkMinutesPerMonth === 0) return 0;
   const progress = (passedMinutesThisMonth / totalWorkMinutesPerMonth) * 100;

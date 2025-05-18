@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface UserTypeCardProps {
   title: string;
@@ -7,12 +7,7 @@ interface UserTypeCardProps {
   onClick: () => void;
 }
 
-const UserTypeCard = ({
-  title,
-  points,
-  selected,
-  onClick,
-}: UserTypeCardProps) => {
+const UserTypeCard = ({ title, points, selected, onClick }: UserTypeCardProps) => {
   return (
     <Card selected={selected} onClick={onClick}>
       <Title>{title}</Title>
@@ -28,8 +23,8 @@ const UserTypeCard = ({
 export default UserTypeCard;
 
 const Card = styled.div<{ selected: boolean }>`
-  background-color: ${({ selected }) => (selected ? "#a8e665" : "#ffffff")};
-  border: 1px solid ${({ selected }) => (selected ? "#1f4223" : "none")};
+  background-color: ${({ selected }) => (selected ? '#a8e665' : '#ffffff')};
+  border: 1px solid ${({ selected }) => (selected ? '#1f4223' : 'none')};
   border-radius: 30px;
   height: 369px;
   width: 400px;
@@ -37,7 +32,7 @@ const Card = styled.div<{ selected: boolean }>`
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: ${({ selected }) => (selected ? "#b0fe5b" : "#F0F0F0")};
+    background-color: ${({ selected }) => (selected ? '#b0fe5b' : '#F0F0F0')};
     border-color: #1f4223;
   }
 

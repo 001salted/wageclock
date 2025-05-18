@@ -1,5 +1,5 @@
-import { useState } from "react";
-import styled from "styled-components";
+import { useState } from 'react';
+import styled from 'styled-components';
 
 interface EarningsCardProps {
   wonAmount: string;
@@ -7,16 +7,12 @@ interface EarningsCardProps {
   itemName: string;
 }
 
-const EarningsCardToday = ({
-  wonAmount,
-  itemAmount,
-  itemName,
-}: EarningsCardProps) => {
+const EarningsCardToday = ({ wonAmount, itemAmount, itemName }: EarningsCardProps) => {
   const [showItem, setShowItem] = useState(false);
 
   return (
     <Card>
-      <Arrow onClick={() => setShowItem((prev) => !prev)}>{"<"}</Arrow>
+      <Arrow onClick={() => setShowItem(prev => !prev)}>{'<'}</Arrow>
       <BoxWrapper>
         <TextBox>
           <Top>오늘 출근해서 현재까지</Top>
@@ -27,7 +23,7 @@ const EarningsCardToday = ({
           </Bottom>
         </TextBox>
       </BoxWrapper>
-      <Arrow onClick={() => setShowItem((prev) => !prev)}>{">"}</Arrow>
+      <Arrow onClick={() => setShowItem(prev => !prev)}>{'>'}</Arrow>
     </Card>
   );
 };
@@ -48,7 +44,7 @@ const Card = styled.div`
 `;
 
 const Arrow = styled.button`
-  font-family: "Press Start 2P";
+  font-family: 'Press Start 2P';
   border: none;
   color: white;
   background-color: transparent;
@@ -71,7 +67,7 @@ const TextBox = styled.div`
 
 const Top = styled.div`
   color: #b0fe5b;
-  font-family: "DungGeunMo";
+  font-family: 'DungGeunMo';
   padding-bottom: 15px;
 `;
 
@@ -82,7 +78,7 @@ const Bottom = styled.div`
 
 const Amount = styled.div`
   color: white;
-  font-family: "Press Start 2P", DungGeunMo;
+  font-family: 'Press Start 2P', DungGeunMo;
   padding-right: 20px;
   position: relative;
   top: 9px;
@@ -90,11 +86,11 @@ const Amount = styled.div`
 
 const AmountUnit = styled.div`
   color: white;
-  font-family: "DungGeunMo";
+  font-family: 'DungGeunMo';
   margin-right: 20px;
 `;
 
 const AmountText = styled.div`
   color: #b0fe5b;
-  font-family: "DungGeunMo";
+  font-family: 'DungGeunMo';
 `;
