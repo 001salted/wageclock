@@ -16,18 +16,22 @@ const EarningsCardToday = ({ wonAmount, itemAmount, itemName }: EarningsCardProp
 
   return (
     <Card $showItem={showItem}>
-      <Arrow onClick={() => setShowItem(prev => !prev)}>{'<'}</Arrow>
+      <Arrow $showItem={showItem} onClick={() => setShowItem(prev => !prev)}>
+        {'<'}
+      </Arrow>
       <BoxWrapper>
         <TextBox>
-          <Top>{topText}</Top>
+          <Top $showItem={showItem}>{topText}</Top>
           <Bottom>
-            <Amount>{showItem ? `${itemAmount}` : `${wonAmount}`}</Amount>
-            <AmountUnit>{showItem ? itemName : `원`}</AmountUnit>
-            <AmountText>{amountText}</AmountText>
+            <Amount $showItem={showItem}>{showItem ? `${itemAmount}` : `${wonAmount}`}</Amount>
+            <AmountUnit $showItem={showItem}>{showItem ? itemName : `원`}</AmountUnit>
+            <AmountText $showItem={showItem}>{amountText}</AmountText>
           </Bottom>
         </TextBox>
       </BoxWrapper>
-      <Arrow onClick={() => setShowItem(prev => !prev)}>{'>'}</Arrow>
+      <Arrow $showItem={showItem} onClick={() => setShowItem(prev => !prev)}>
+        {'>'}
+      </Arrow>
     </Card>
   );
 };
@@ -47,10 +51,10 @@ const Card = styled.div<{ $showItem: boolean }>`
   min-width: 800px;
 `;
 
-const Arrow = styled.button`
+const Arrow = styled.button<{ $showItem: boolean }>`
   font-family: 'Press Start 2P';
   border: none;
-  color: white;
+  color: ${props => (props.$showItem ? '#1f4223' : 'white')};
   background-color: transparent;
   font-size: 48px;
   cursor: pointer;
@@ -69,8 +73,8 @@ const TextBox = styled.div`
   flex-grow: 1;
 `;
 
-const Top = styled.div`
-  color: #1f4223;
+const Top = styled.div<{ $showItem: boolean }>`
+  color: ${props => (props.$showItem ? '#1f4223' : 'white')};
   font-family: 'DungGeunMo';
   padding-bottom: 15px;
 `;
@@ -80,21 +84,21 @@ const Bottom = styled.div`
   align-items: baseline;
 `;
 
-const Amount = styled.div`
-  color: black;
+const Amount = styled.div<{ $showItem: boolean }>`
+  color: ${props => (props.$showItem ? '#1f4223' : '#b0fe5b')};
   font-family: 'Press Start 2P', DungGeunMo;
   padding-right: 20px;
   position: relative;
   top: 9px;
 `;
 
-const AmountUnit = styled.div`
-  color: black;
+const AmountUnit = styled.div<{ $showItem: boolean }>`
+  color: ${props => (props.$showItem ? 'black' : 'white')};
   font-family: 'DungGeunMo';
   margin-right: 20px;
 `;
 
-const AmountText = styled.div`
-  color: #1f4223;
+const AmountText = styled.div<{ $showItem: boolean }>`
+  color: ${props => (props.$showItem ? '#1f4223' : 'white')};
   font-family: 'DungGeunMo';
 `;
