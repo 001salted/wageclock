@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import GaugeComponent from './GaugeComponent';
 
@@ -10,13 +11,28 @@ interface GaugeComponentContainerProps {
 
 function GaugeComponentContainer({ state, type, leastTime }: GaugeComponentContainerProps) {
   const isDaily = type === '일급';
+  const [hour, setHour] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+
+  useEffect(() => {
+    if (isDaily) {
+      if (leastTime >= 60) {
+        setHour(Math.round(leastTime / 60));
+        setMinutes(leastTime % 60);
+      }
+    }
+  }, [leastTime]);
 
   return (
     <GaugeComponentContainerWrap $type={type}>
       <GaugeComponent state={state} type={type} />
       {isDaily ? (
         <OutDoorTime $type={type}>
-          <Time $type={type}>{`${leastTime}분 후`}</Time>
+          {leastTime >= 60 ? (
+            <Time $type={type}>{`${hour}시간 ${minutes}분 후`}</Time>
+          ) : (
+            <Time $type={type}>{`${leastTime}분 후`}</Time>
+          )}
           {'퇴근!'}
         </OutDoorTime>
       ) : (
