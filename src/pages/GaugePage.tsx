@@ -60,7 +60,11 @@ function GaugePage() {
   useEffect(() => {
     const units = convertToUnits(todayEarnings);
     if (payday) {
-      setLeaveDay(lastDay.getDate() - day + payday);
+      if (payday > day) {
+        setLeaveDay(payday - day);
+      } else {
+        setLeaveDay(lastDay.getDate() - day + payday);
+      }
     }
     const updateItem = () => {
       const currentItem = ITEM_ORDER[currentIndex];
