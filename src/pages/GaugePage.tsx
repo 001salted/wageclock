@@ -37,6 +37,7 @@ function GaugePage() {
   const navigate = useNavigate();
   const { resetWageData } = useWage();
 
+  const [isLoading, setIsLoading] = useState(true);
   const [todayProgress, setTodayProgress] = useState(state.todayProgress);
   const [todayEarnings, setTodayEarnings] = useState(state.todayEarnings);
   const [monthlyProgress, setMonthlyProgress] = useState(state.monthlyProgress);
@@ -123,6 +124,7 @@ function GaugePage() {
       setMonthlyEarnings(() => calculateMonthlyEarnings(passedMinutesThisMonth, perMinuteWage));
 
       setLeastTime(totalWorkMinutesPerDay - passedMinutesToday);
+      setIsLoading(false);
     }, 1000);
 
     return () => {
@@ -137,40 +139,48 @@ function GaugePage() {
   };
 
   return (
-    <GaugeMain>
-      <Header viewType={viewType} onChange={setViewType} />
+    <>
+      {isLoading ? (
+        <main>
+          <h1>계 산 중 . . .</h1>
+        </main>
+      ) : (
+        <GaugeMain>
+          <Header viewType={viewType} onChange={setViewType} />
 
-      {viewType === 'daily' && (
-        <>
-          <GaugeComponentContainer
-            state={todayProgress}
-            payday={payday}
-            leastTime={leastTime}
-            type="일급"
-          />
-          <EarningsCardToday
-            wonAmount={todayEarnings.toLocaleString()}
-            itemAmount={itemAmount}
-            itemName={itemName}
-          />
-        </>
+          {viewType === 'daily' && (
+            <>
+              <GaugeComponentContainer
+                state={todayProgress}
+                payday={payday}
+                leastTime={leastTime}
+                type="일급"
+              />
+              <EarningsCardToday
+                wonAmount={todayEarnings.toLocaleString()}
+                itemAmount={itemAmount}
+                itemName={itemName}
+              />
+            </>
+          )}
+
+          {viewType === 'monthly' && (
+            <>
+              <GaugeComponentContainer
+                state={monthlyProgress}
+                payday={payday}
+                leastTime={leaveDay}
+                type="월급"
+              />
+              <EarningsCardMonth wageAmount={monthlyEarnings.toLocaleString()} />
+            </>
+          )}
+
+          <WonSigns />
+          <ResetButton onClick={handleReset}>입력값 초기화하기</ResetButton>
+        </GaugeMain>
       )}
-
-      {viewType === 'monthly' && (
-        <>
-          <GaugeComponentContainer
-            state={monthlyProgress}
-            payday={payday}
-            leastTime={leaveDay}
-            type="월급"
-          />
-          <EarningsCardMonth wageAmount={monthlyEarnings.toLocaleString()} />
-        </>
-      )}
-
-      <WonSigns />
-      <ResetButton onClick={handleReset}>입력값 초기화하기</ResetButton>
-    </GaugeMain>
+    </>
   );
 }
 
